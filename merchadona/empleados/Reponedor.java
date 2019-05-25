@@ -1,16 +1,33 @@
 package merchadona.empleados;
 
+/**
+ * Los reponedores añaden stock a los productos.
+ * Los reponedores tienen el total del número de productos que han respuesto.
+ * @author Jorge y Javi
+ * @version 05/2019
+ * @since 05/16/2019
+ */
 import merchadona.Merchadona;
 
 public class Reponedor extends Empleado {
 
 	// Metodos
 
+	/**
+	 * Constructor de la clase Reponedor que hereda de Empleado.
+	 * 
+	 * @param nombre : nombre del reponedor
+	 * @param hash   : id del reponedor
+	 */
 	public Reponedor(String nombre, int hash) {
 		// TODO Auto-generated constructor stub
 		super(nombre, hash);
 	}
 
+	/**
+	 * Metodo que llamaremos para reponer productos. Imprime el listado de productos
+	 * y el usuario elige cual reponer
+	 */
 	public void reponerProductos() {
 		int numeroProd;
 		int cantidad;

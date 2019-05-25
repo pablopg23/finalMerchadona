@@ -1,5 +1,18 @@
 package merchadona;
 
+/**
+ * La funcionalidad del programa es según el tipo de usuario que se haya identificado.
+ * Si es el id 1, puede dar de alta empleados y productos, además de darlos de baja. Se le permite sacar una lista de cajeros con sus totales.
+ * Si es de reponedor, podrá reponer productos, y ver una lista de las cantidades de cada producto que quedan en stock.
+ * Si es cajero, irá metiendo los productos vendidos en el programa así como sus cantidades, si mete más cantidad de las que hay en stock tiene que avisar de que no hay stock.
+ * Al finalizar la compra se actualiza el stock de cada producto y se saca por pantalla el total de la compra, además de acumularla en sus totales.
+ * El programa principal dispondrá de una lista de productos, y un hashmap de empleados.
+
+
+ * @author Jorge y Javi
+ * @version 05/2019
+ * @since 05/16/2019
+ */
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -11,11 +24,27 @@ import merchadona.productos.*;
 public abstract class Merchadona {
 
 	// Atributos
-
+	/**
+	 * Sirve para dar formato decimal
+	 */
 	public static DecimalFormat df = new DecimalFormat("#.00");
+
+	/**
+	 * Como el Scanner da problemas al cerrar el System.in, en caso de que se cierre
+	 * en una clase en concreto, voy a crear una variable global Scanner sc y la
+	 * cierro al final del programa Merchadona.
+	 * 
+	 * Esto puede dar problemas en concurrencia, pero en este caso solo trabajamos
+	 * con un hilo.
+	 */
 
 	public static Scanner sc = new Scanner(System.in);
 
+	/**
+	 * HashMap<K,V> Creamos un hashmap de empleados. En este mapa irán las parejas
+	 * ID/Empleado. Es de esta forma, porque la KEY del HashMap tiene que ser un
+	 * valor unique.
+	 */
 	public static HashMap<Integer, Empleado> empleados = new HashMap<Integer, Empleado>();
 
 	/*
@@ -24,6 +53,10 @@ public abstract class Merchadona {
 	private static Caja[] cajas = new Caja[5];
 	private static int cajasAbiertas = 0;
 
+	/**
+	 * Productos que tenemos disponibles. Son válidos para todos los paquetes, y es
+	 * una lista pública y estática.
+	 */
 	public static LinkedList<Producto> productos = new LinkedList<Producto>();
 
 	// Metodos
@@ -86,6 +119,11 @@ public abstract class Merchadona {
 
 	}
 
+	/**
+	 * Metodo que abre una caja y pone un cajero
+	 * 
+	 * @param cajero : Cajero que ocupa la caja
+	 */
 	public static void abrirCaja(Cajero cajero) {
 		// Comprobacion con CajasAbiertas
 
@@ -93,6 +131,9 @@ public abstract class Merchadona {
 		cajasAbiertas++;
 	}
 
+	/**
+	 * Metodo que cierra la caja
+	 */
 	public static void cerrarCaja() {
 
 		// Comprobacion con CajasAbiertas
@@ -101,6 +142,9 @@ public abstract class Merchadona {
 		cajasAbiertas--;
 	}
 
+	/**
+	 * Metodo que muestra una lista de los productos (nombre, precio y cantidad)
+	 */
 	public static void listarProductos() {
 		for (int i = 0; i < productos.size(); i++) {
 			System.out.println(i + 1 + ". " + productos.get(i).getNombre() + " - "
@@ -109,6 +153,11 @@ public abstract class Merchadona {
 		}
 	}
 
+	/**
+	 * Metodo que muestra el precio del producto pasado por parametro
+	 * 
+	 * @param productito : producto del que se muestra el precio
+	 */
 	public static void mostrarPrecioProducto(Producto productito) {
 
 		for (int j = 0; j < 4; j++) {

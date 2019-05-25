@@ -1,20 +1,41 @@
 package merchadona;
 
+/**
+ * Se pide el hacer el programa que va controlar las cajas de la aplicación.
+ * Para abrir una caja se pondrá un empleado, y venderán productos.
+ * 
+ * @author Jorge y Javi
+ * @version 05/2019
+ * @since 05/16/2019
+ */
 import merchadona.empleados.Cajero;
 
 public class Caja {
-
+	/**
+	 * Atributos: Cajero empleado y double precioTotalCompra;
+	 */
 	// Atributos
 	private Cajero empleado;
 	private double precioTotalCompra;
 
 	// Metodos
-
+	/**
+	 * Constructor de la clase Caja
+	 * 
+	 * @param cajero : Cajero que vamos a asignar al empleado de la caja el precio
+	 *               total de la compra empieza en 0.0
+	 */
 	public Caja(Cajero cajero) {
 		this.empleado = cajero;
 		precioTotalCompra = 0.0;
 	}
 
+	/**
+	 * Metodo que llamaremos a la hora de realizar una venta. Para elegir el
+	 * prodcuto, pide su numero. Resta a la cantidad de producto que hay, la
+	 * cantidad que compra el cliente.
+	 * 
+	 */
 	public void vender() {
 		precioTotalCompra = 0.0;
 		int numeroProd;
